@@ -24,11 +24,11 @@ export class PruebaController {
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updatePruebaDto: UpdatePruebaDto) {
-    return this.pruebaService.update(+id, updatePruebaDto);
+    return this.pruebaService.update(id, updatePruebaDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.pruebaService.remove(+id);
+    return this.pruebaService.remove(id);
   }
 }

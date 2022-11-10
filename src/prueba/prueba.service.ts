@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, ObjectID } from 'typeorm';
+import { Repository } from 'typeorm';
 import { CreatePruebaDto } from './dto/create-prueba.dto';
 import { UpdatePruebaDto } from './dto/update-prueba.dto';
 import { Prueba } from './entities/prueba.entity';
@@ -22,13 +22,10 @@ export class PruebaService {
     
     try {
 
-      // CREAR INSTANCIA DE PRUEBA //
       const prueba = this.pruebaRepository.create(createPruebaDto);
 
-      // GUARDAR LA PRUEBA //
       await this.pruebaRepository.save(prueba);
 
-      // RETORNO LA PRUEBA //
       return prueba;
 
     } catch (error) {
@@ -51,23 +48,49 @@ export class PruebaService {
   /*-------------------------------
       FIND PRUEBA BY ID FUNCTION
   ---------------------------------*/
-  async findOne(_id: string) {
+  async findOne(id: any) {
 
-    const prueba = await this.pruebaRepository.findOneBy({_id})
-    
+    const prueba = this.pruebaRepository.findOne(id);
+
     if(!prueba){
-      throw new NotFoundException(`La prueba con el id: ${_id} no fue encontrada`);
+      throw new NotFoundException(`La prueba con el id: ${id} no fue encontrada`);
     }
 
     return prueba;
 
   }
 
-  update(id: number, updatePruebaDto: UpdatePruebaDto) {
-    return `This action updates a #${id} prueba`;
+  /*---------------------------
+      UPDATE PRUEBA FUNCTION
+  -----------------------------*/
+  async update(id: string, updatePruebaDto: UpdatePruebaDto) {
+
+    const prueba = await this.pruebaRepository.preload({
+      _id:id,
+      ...updatePruebaDto
+    })
+
+    if(!prueba){
+      throw new NotFoundException(`La prueba con el id: ${id} no fue encontrada`);
+    }
+
+    return this.pruebaRepository.save(prueba);
+    
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} prueba`;
+  /*---------------------------
+      REMOVE PRUEBA FUNCTION
+  -----------------------------*/
+  async remove(id: string) {
+    
+    const prueba = await this.findOne(id);
+
+    if(prueba){
+      return await this.pruebaRepository.remove(prueba);
+    }
+
+    throw new NotFoundException(`La prueba con el id: ${id} no fue encontrada`);
+
   }
+
 }
