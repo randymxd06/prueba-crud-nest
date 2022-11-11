@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreatePruebaDto } from './dto/create-prueba.dto';
@@ -26,13 +26,16 @@ export class PruebaService {
 
       await this.pruebaRepository.save(prueba);
 
-      return prueba;
+      return {
+        data: prueba,
+        message: "La prueba fue creada correctamente"
+      };
 
     } catch (error) {
 
       this.logger.error(error);
       
-      throw new BadRequestException(error.detail);
+      throw new BadRequestException(error.message, error.detail);
 
     }
 
@@ -42,7 +45,22 @@ export class PruebaService {
       FIND ALL PRUEBA FUNCTION
   -------------------------------*/
   async findAll() {
-    return await this.pruebaRepository.find({});
+
+    const pruebas =  await this.pruebaRepository.find({})
+
+    if(pruebas.length != 0){
+
+      return {
+        data: pruebas,
+        message: "Pruebas encontradas correctamente"
+      }
+
+    } else {
+
+      throw new NotFoundException("No existen pruebas en la base de datos");
+
+    }
+
   }
 
   /*-------------------------------
@@ -65,17 +83,31 @@ export class PruebaService {
   -----------------------------*/
   async update(id: string, updatePruebaDto: UpdatePruebaDto) {
 
-    const prueba = await this.pruebaRepository.preload({
-      _id:id,
-      ...updatePruebaDto
-    })
+    try {
+      
+      const prueba = await (this.pruebaRepository.update(id, updatePruebaDto));
+  
+      if(prueba.raw.matchedCount == 1){
+  
+        return {
+          data: updatePruebaDto, 
+          message: "Datos actualizados correctamente"
+        };
+        
+      } else {
+        
+        throw new NotFoundException(`La prueba con el id: ${id} no fue encontrada`);
+  
+      }
 
-    if(!prueba){
-      throw new NotFoundException(`La prueba con el id: ${id} no fue encontrada`);
+    } catch (error) {
+
+      this.logger.error(error);
+
+      throw new BadRequestException(error.message, error.detail);
+
     }
 
-    return this.pruebaRepository.save(prueba);
-    
   }
 
   /*---------------------------
@@ -86,7 +118,10 @@ export class PruebaService {
     const prueba = await this.findOne(id);
 
     if(prueba){
-      return await this.pruebaRepository.remove(prueba);
+      return {
+        data: await this.pruebaRepository.remove(prueba),
+        message: "Prueba eliminada correctamente"
+      }
     }
 
     throw new NotFoundException(`La prueba con el id: ${id} no fue encontrada`);

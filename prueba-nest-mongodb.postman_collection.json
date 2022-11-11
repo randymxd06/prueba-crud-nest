@@ -1,0 +1,453 @@
+{
+	"info": {
+		"_postman_id": "9a1482f6-1abd-49e4-9237-432c061d9661",
+		"name": "prueba-nest-mongodb",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18006237"
+	},
+	"item": [
+		{
+			"name": "prueba-crud",
+			"item": [
+				{
+					"name": "GET PRUEBA",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"randym0624@gmail.com\",\r\n    \"nombre\": \"Randy Martinez\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/prueba",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"prueba"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET PRUEBA",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"randym0624@gmail.com\",\r\n    \"nombre\": \"Randy Martinez\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/v1/prueba",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"prueba"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "339"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"153-Vv6S278sTASYWRWYkOH3J3EcDA0\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 10 Nov 2022 19:03:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"636d1b4a1e827be36cacf481\",\n        \"email\": \"randym0624@gmail.com\",\n        \"nombre\": \"Randy Martinez\"\n    },\n    {\n        \"_id\": \"636d1bf87953fb5be93d1ae4\",\n        \"email\": \"prueba01@gmail.com\",\n        \"nombre\": \"Prueba\"\n    },\n    {\n        \"_id\": \"636d1bff7953fb5be93d1ae5\",\n        \"email\": \"prueba02@gmail.com\",\n        \"nombre\": \"Prueba\"\n    },\n    {\n        \"_id\": \"636d1c027953fb5be93d1ae6\",\n        \"email\": \"prueba03@gmail.com\",\n        \"nombre\": \"Prueba\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "GET PRUEBA BY ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/v1/prueba/636e5b34c15b1759aea0b336",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"prueba",
+								"636e5b34c15b1759aea0b336"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET PRUEBA BY ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/v1/prueba/636d1b4a1e827be36cacf481",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"prueba",
+										"636d1b4a1e827be36cacf481"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "91"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5b-sp+55aV947a5ybpxaXBw8zmOKY8\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 10 Nov 2022 19:05:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"636d1b4a1e827be36cacf481\",\n    \"email\": \"randym0624@gmail.com\",\n    \"nombre\": \"Randy Martinez\"\n}"
+						}
+					]
+				},
+				{
+					"name": "POST PRUEBA",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"prueba@gmail.com\",\r\n    \"nombre\": \"Prueba\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/prueba",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"prueba"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "POST PRUEBA",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"prueba@gmail.com\",\r\n    \"nombre\": \"Prueba\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/v1/prueba",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"prueba"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "79"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4f-8Qhn/cgtR1A3xbdtXHPx8oHJCao\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 10 Nov 2022 19:06:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"email\": \"prueba@gmail.com\",\n    \"nombre\": \"Prueba\",\n    \"_id\": \"636d4bae0bc339c0c10bf72e\"\n}"
+						}
+					]
+				},
+				{
+					"name": "UPDATE PRUEBA",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"prueba@gmail.com\",\r\n    \"nombre\": \"prueba\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/prueba/636e5b34c15b1759aea0b336",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"prueba",
+								"636e5b34c15b1759aea0b336"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "UPDATE PRUEBA",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"prueba@gmail.com\",\r\n    \"nombre\": \"prueba\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/v1/prueba/636d5520a237eff6ed0acf95",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"prueba",
+										"636d5520a237eff6ed0acf95"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "100"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"64-TEFk/b2DlFyMDCK6goYkPaynxjc\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 11 Nov 2022 14:11:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"email\": \"prueba@gmail.com\",\n        \"nombre\": \"prueba\"\n    },\n    \"message\": \"Datos actualizados correctamente\"\n}"
+						}
+					]
+				},
+				{
+					"name": "DELETE PRUEBA",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/v1/prueba/636e5aeb5bc7d06e078fa494",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"prueba",
+								"636e5aeb5bc7d06e078fa494"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "DELETE PRUEBA",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/v1/prueba/636d1c027953fb5be93d1ae6",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"prueba",
+										"636d1c027953fb5be93d1ae6"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "48"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"30-KguPqW5yO+5qG/uDvcbKeeu/nYM\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 10 Nov 2022 19:26:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"email\": \"prueba03@gmail.com\",\n    \"nombre\": \"Prueba\"\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
